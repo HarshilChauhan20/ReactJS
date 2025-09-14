@@ -1,0 +1,48 @@
+/* General container for the form */
+.card-validator-container {
+  margin-left: 200px;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Styles the <pre> tag to act as a form wrapper */
+.form-wrapper {
+  background-color: #f4f4f4;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+/* Heading style */
+.title {
+  color: #333;
+  margin-top: 0;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Input field styling */
+.card-input {
+  padding: 8px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Error message styling */
+.error-message {
+  font-weight: bold;
+  color: #d9534f; /* A standard red for errors */
+  margin-top: 10px;
+  display: block; /* Ensures it appears on its own line */
+}
+
+/* Success message styling */
+.success-message {
+  font-weight: bold;
+  color: #5cb85c; /* A standard green for success */
+  margin-top: 10px;
+  display: block;
+}
