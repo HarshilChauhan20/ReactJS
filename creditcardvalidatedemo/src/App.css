@@ -1,48 +1,191 @@
-/* General container for the form */
-.card-validator-container {
-  margin-left: 200px;
-  font-family: Arial, sans-serif;
+/* --- Root Variables for easy theme changes --- */
+:root {
+  --primary-color: #4a90e2; /* A nice, friendly blue */
+  --success-color: #50c878; /* A vibrant green */
+  --error-color: #e57373;   /* A softer red */
+  --light-gray: #f7f9fc;
+  --medium-gray: #dfe6e9;
+  --dark-gray: #555;
+  --font-family: 'Poppins', Arial, sans-serif;
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --border-radius: 12px;
+}
+
+/* --- General Body & Layout --- */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+  color: var(--dark-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* --- Main Form Container --- */
+.validator-container {
+  max-width: 450px;
+  width: 100%;
   padding: 20px;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Styles the <pre> tag to act as a form wrapper */
-.form-wrapper {
-  background-color: #f4f4f4;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: inline-block;
+.card-validator-form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Creates space between form elements */
 }
 
-/* Heading style */
+/* --- Fade-in Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Heading Style --- */
 .title {
   color: #333;
-  margin-top: 0;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
-/* Input field styling */
+/* --- Input Field Grouping & Styling --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
 .card-input {
-  padding: 8px;
-  margin-left: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%;
+  padding: 12px 15px 12px 50px; /* Left padding to not overlap icon */
+  border: 2px solid var(--medium-gray);
+  border-radius: 8px;
   font-size: 1rem;
+  font-family: var(--font-family);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Important for width calculation */
 }
 
-/* Error message styling */
-.error-message {
-  font-weight: bold;
-  color: #d9534f; /* A standard red for errors */
-  margin-top: 10px;
-  display: block; /* Ensures it appears on its own line */
+.card-input::placeholder {
+  color: #b0bec5;
 }
 
-/* Success message styling */
+.card-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+}
+
+.card-input:focus + .input-icon {
+  color: var(--primary-color);
+}
+
+/* --- Button Styling --- */
+.validate-button {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.validate-button:hover {
+  background: #3a7ac8; /* Slightly darker on hover */
+}
+
+.validate-button:active {
+  transform: scale(0.98);
+}
+
+/* --- General Message Styling (Alerts) --- */
+.message {
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Success Message --- */
 .success-message {
-  font-weight: bold;
-  color: #5cb85c; /* A standard green for success */
-  margin-top: 10px;
-  display: block;
+  background-color: #e8f5e9;
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+.success-message svg {
+  stroke: var(--success-color);
+}
+
+/* --- Error Message --- */
+.error-message {
+  background-color: #ffcdd2;
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+.error-message svg {
+  stroke: var(--error-color);
 }
