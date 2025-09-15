@@ -1,41 +1,42 @@
 import React, { useState } from "react";
 import validator from 'validator';
-import './App.css'; // Import the CSS file
+import './App.css';
 
 const App = () => {
-
   const [errorMessage, setErrorMessage] = useState('');
-  const [messageClassName, setMessageClassName] = useState('error-message');
+  const [messageClassName, setMessageClassName] = useState('');
 
   const validateCreditCard = (value) => {
     if (validator.isCreditCard(value)) {
-      setErrorMessage('Valid Credit Card Number');
-      setMessageClassName('success-message'); // Set class for success
+      setErrorMessage('✅ Valid Credit Card Number');
+      setMessageClassName('message success-message');
     } else if (value === '') {
-      setErrorMessage(''); // Clear message if input is empty
+      setErrorMessage('');
+      setMessageClassName('');
     } else {
-      setErrorMessage('Enter a valid Credit Card Number!');
-      setMessageClassName('error-message'); // Set class for error
+      setErrorMessage('❌ Enter a valid Credit Card Number!');
+      setMessageClassName('message error-message');
     }
-  }
+  };
 
   return (
     <div className="card-validator-container">
-      <pre className="form-wrapper">
-        <h2 className="title">Validating Credit Card in ReactJS</h2>
-        <span>Enter Credit Card: </span>
-        <input 
-          type="text"
-          className="card-input"
-          onChange={(e) => validateCreditCard(e.target.value)}
-        />
-        <br />
-        <span className={messageClassName}>
-          {errorMessage}
-        </span>
-      </pre>
+      <h2 className="title">Credit Card Validator</h2>
+      
+      <label htmlFor="creditCard">Enter Credit Card Number:</label>
+      <input
+        id="creditCard"
+        type="text"
+        className="card-input"
+        onChange={(e) => validateCreditCard(e.target.value)}
+        placeholder="1234 5678 9012 3456"
+      />
+
+      {errorMessage && (
+        <div className={messageClassName}>{errorMessage}</div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
